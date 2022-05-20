@@ -2,12 +2,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>JSP - Hello World</title>
+    <title>Система хранения данных сетевых клиентов</title>
 </head>
 <body>
-<h1><%= "Hello World!" %>
+<h1 style="text-align: center"><%= "Система хранения данных сетевых клиентов" %>
 </h1>
 <br/>
-<a href="hello-servlet">Hello Servlet</a>
+<a href="create" style="margin-right: auto">Создать клиента</a>
+<a href="viewlist" style="margin-right: auto;display: block">Посмотреть список всех клиентов</a>
 </body>
 </html>
