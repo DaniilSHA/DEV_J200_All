@@ -245,7 +245,7 @@ public class Create extends HttpServlet {
         return true;
     }
 
-    static class IpAddressValidator {
+    public static class IpAddressValidator {
         private static final String zeroTo255
                 = "([01]?[0-9]{1,2}|2[0-4][0-9]|25[0-5])";
 
