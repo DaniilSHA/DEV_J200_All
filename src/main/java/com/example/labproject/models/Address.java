@@ -20,6 +20,9 @@ public class Address {
         this.extra = extra;
     }
 
+    public Address() {
+    }
+
     public int getIdAddress() {
         return idAddress;
     }

@@ -6,6 +6,26 @@
     <title>View client list</title>
 </head>
 <body>
+<div>
+    <form action="viewlist" method="post">
+        <h1>Фильтр</h1>
+        <label for="cityFilter">Город:</label>
+        <select name="cityFilter" id="cityFilter">
+            <option value="Москва">Москва</option>
+            <option value="Рязань">Рязань</option>
+            <option value="Хабаровск">Хабаровск</option>
+            <option value="Новгород">Новгород</option>
+        </select>
+        <label for="streetFilter">Улица:</label>
+        <input type="text" name="streetFilter" id="streetFilter">
+        <label for="numFilter">Номер дома:</label>
+        <input type="number" name="numFilter" id="numFilter">
+        <button type="submit">Фильтровать</button>
+    </form>
+</div>
+<br>
+<br>
+<br>
 <table border="1px solid black">
     <thead>
     <tr>
@@ -18,6 +38,7 @@
     </tr>
     </thead>
     <tbody>
+    <c:if test="${clientList.size() != 0}">
     <c:forEach items="${clientList}" var="client">
     <c:if test="${client != null}">
     <tr>
@@ -39,6 +60,7 @@
     <tr>
     </c:if>
     </c:forEach>
+    </c:if>
     </tbody>
 </table>
 <a href="index.jsp" style="display: block">Вернуться на главную</a>
