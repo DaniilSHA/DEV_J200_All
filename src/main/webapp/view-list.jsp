@@ -13,23 +13,32 @@
         <th>тип устройства</th>
         <th>модель устройства</th>
         <th>ip</th>
-        <th>address-list</th>
+        <th>адрес</th>
+        <th></th>
     </tr>
     </thead>
     <tbody>
-        <c:forEach items="${clientList}" var="client">
-        <tr>
-            <td>${client.idClient}</td>
-            <td>${client.type}</td>
-            <td>${client.model}</td>
-            <td>${client.ip}</td>
-            <td>
-                <c:forEach items="${client.addressList}" var="adrress">
+    <c:forEach items="${clientList}" var="client">
+    <c:if test="${client != null}">
+    <tr>
+        <td>${client.idClient}</td>
+        <td>${client.type}</td>
+        <td>${client.model}</td>
+        <td>${client.ip}</td>
+        <td>
+            <c:forEach items="${client.addressList}" var="adrress">
                 <p> ${adrress.idAddress}, ${adrress.city}, ${adrress.street}, ${adrress.num}, ${adrress.subnum}, ${adrress.flat}, ${adrress.extra} </p>
-                </c:forEach>
-            </td>
-        <tr>
-        </c:forEach>
+            </c:forEach>
+        </td>
+        <td>
+            <form method="post" action="delete">
+                <input type="hidden" name="deletionId" value="${client.idClient}">
+                <input type="submit" value="Удалить">
+            </form>
+        </td>
+    <tr>
+    </c:if>
+    </c:forEach>
     </tbody>
 </table>
 <a href="index.jsp" style="display: block">Вернуться на главную</a>
