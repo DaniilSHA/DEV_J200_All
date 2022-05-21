@@ -21,7 +21,7 @@ public class ClientStorage {
                                         ++ClientStorage.ADDRESS_ID_COUNTER,
                                         "Москва",
                                         "Фрунзенская",
-                                        22,
+                                        34,
                                         66,
                                         11,
                                         "ничего"
@@ -35,8 +35,8 @@ public class ClientStorage {
                                 new Address(
                                         ++ClientStorage.ADDRESS_ID_COUNTER,
                                         "Москва",
-                                        "Фрунзенская",
-                                        22,
+                                        "Яна",
+                                        34,
                                         89,
                                         44,
                                         "что-то"
@@ -97,7 +97,7 @@ public class ClientStorage {
                                 new Address(
                                         ++ClientStorage.ADDRESS_ID_COUNTER,
                                         "Москва",
-                                        "Фрунзенская",
+                                        "Яна",
                                         22,
                                         31,
                                         54,

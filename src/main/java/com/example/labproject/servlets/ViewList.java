@@ -30,12 +30,7 @@ public class ViewList extends HttpServlet {
         String num = request.getParameter("numFilter");
 
 
-        if (city.trim().equals("")) {
-            request.setAttribute("errorField", "город фильтра");
-            request.setAttribute("errorReason", "поле не может быть пустыми");
-            request.getRequestDispatcher("/error.jsp").forward(request, response);
-            return;
-        } else if (city.length()>101) {
+        if (city.length()>101) {
             request.setAttribute("errorField", "город фильтра");
             request.setAttribute("errorReason", "полее превышает допустимую длину");
             request.getRequestDispatcher("/error.jsp").forward(request, response);
@@ -47,12 +42,7 @@ public class ViewList extends HttpServlet {
             return;
         }
 
-        if (street.trim().equals("")) {
-            request.setAttribute("errorField", "улица фильтра");
-            request.setAttribute("errorReason", "поле не может быть пустыми");
-            request.getRequestDispatcher("/error.jsp").forward(request, response);
-            return;
-        } else if (street.length()>101) {
+        if (street.length()>101) {
             request.setAttribute("errorField", "улица фильтра");
             request.setAttribute("errorReason", "полее превышает допустимую длину");
             request.getRequestDispatcher("/error.jsp").forward(request, response);
@@ -64,14 +54,8 @@ public class ViewList extends HttpServlet {
             return;
         }
 
-        if (num.trim().equals("")) {
-            request.setAttribute("errorField", "номер дома фильтра");
-            request.setAttribute("errorReason", "поле не может быть пустыми");
-            request.getRequestDispatcher("/error.jsp").forward(request, response);
-            return;
-        }
         try {
-            Integer.parseInt(num);
+            if(!num.trim().equals("")) Integer.parseInt(num);
         } catch (ClassCastException e) {
             request.setAttribute("errorField", "номер дома фильтра");
             request.setAttribute("errorReason", "не число");
@@ -84,10 +68,10 @@ public class ViewList extends HttpServlet {
                         .filter(client ->
                                 client.getAddressList().contains(
                                         client.getAddressList().stream().filter(
-                                                        address ->  address.getCity().equals(city) &&
-                                                                    address.getStreet().equals(street) &&
-                                                                    address.getNum() == Integer.parseInt(num))
-                                                                    .findFirst().orElse(new Address()))
+                                                        address ->  (city.trim().equals("") || address.getCity().equals(city)) &&
+                                                                    (street.trim().equals("") || address.getStreet().equals(street)) &&
+                                                                    (num.trim().equals("") || address.getNum() == Integer.parseInt(num))
+                                                        ).findFirst().orElse(new Address()))
                         )
                         .collect(Collectors.toList()));
         request.getRequestDispatcher("/view-list.jsp").forward(request, response);
