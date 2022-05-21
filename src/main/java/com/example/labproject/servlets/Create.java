@@ -193,6 +193,12 @@ public class Create extends HttpServlet {
             request.getRequestDispatcher("/error.jsp").forward(request, response);
             return false;
         }
+        if (Integer.parseInt(num) <= 0) {
+            request.setAttribute("errorField", "номер дома");
+            request.setAttribute("errorReason", "не может быть отрицательным числом");
+            request.getRequestDispatcher("/error.jsp").forward(request, response);
+            return false;
+        }
 
         if (subnum.trim().equals("")) {
             request.setAttribute("errorField", "корпус");
@@ -208,6 +214,12 @@ public class Create extends HttpServlet {
             request.getRequestDispatcher("/error.jsp").forward(request, response);
             return false;
         }
+        if (Integer.parseInt(subnum) <= 0) {
+            request.setAttribute("errorField", "корпус");
+            request.setAttribute("errorReason", "не может быть отрицательным числом");
+            request.getRequestDispatcher("/error.jsp").forward(request, response);
+            return false;
+        }
 
         if (flat.trim().equals("")) {
             request.setAttribute("errorField", "квартира");
@@ -220,6 +232,12 @@ public class Create extends HttpServlet {
         } catch (ClassCastException e) {
             request.setAttribute("errorField", "квартира");
             request.setAttribute("errorReason", "не число");
+            request.getRequestDispatcher("/error.jsp").forward(request, response);
+            return false;
+        }
+        if (Integer.parseInt(flat) <= 0) {
+            request.setAttribute("errorField", "квартира");
+            request.setAttribute("errorReason", "не может быть отрицательным числом");
             request.getRequestDispatcher("/error.jsp").forward(request, response);
             return false;
         }
