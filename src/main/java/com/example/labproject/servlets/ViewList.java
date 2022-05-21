@@ -79,18 +79,6 @@ public class ViewList extends HttpServlet {
             return;
         }
 
-        List<Client> collect = ClientStorage.CLIENT_LIST.stream()
-                .filter(client ->
-                        client.getAddressList().contains(
-                                client.getAddressList().stream().filter(
-                                                address ->  address.getCity().equals(city) &&
-                                                            address.getStreet().equals(street) &&
-                                                            address.getNum() == Integer.parseInt(num))
-                                        .findFirst().orElse(new Address()))
-                )
-                .collect(Collectors.toList());
-
-
         request.setAttribute("clientList",
                 ClientStorage.CLIENT_LIST.stream()
                         .filter(client ->
