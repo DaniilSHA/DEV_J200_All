@@ -15,6 +15,35 @@ import java.util.Collections;
 @Stateless
 public class UpdateBean {
 
+
+    public void deleteClient( HttpServletRequest request,
+                              HttpServletResponse response,
+                              String id) throws ServletException, IOException {
+
+        try {
+            int castId = Integer.parseInt(id);
+            if (ClientStorage.CLIENT_LIST.get(--castId) == null) throw new IndexOutOfBoundsException("user don't found");
+        } catch (ClassCastException e) {
+            request.setAttribute("errorField", "id");
+            request.setAttribute("errorReason", "поле не число");
+            request.getRequestDispatcher("/error.jsp").forward(request, response);
+            return;
+        } catch (IndexOutOfBoundsException e) {
+            request.setAttribute("errorField", "id");
+            request.setAttribute("errorReason", "пользователь с таким id не найден");
+            request.getRequestDispatcher("/error.jsp").forward(request, response);
+            return;
+        }
+
+        ClientStorage.CLIENT_LIST.remove(Integer.parseInt(id)-1);
+        ClientStorage.CLIENT_LIST.add(Integer.parseInt(id)-1, null);
+
+        request.setAttribute("clientList", ClientStorage.CLIENT_LIST);
+        request.getRequestDispatcher("/view-list.jsp").forward(request, response);
+
+    }
+
+
     public void updateClient(
             HttpServletRequest request,
             HttpServletResponse response,

@@ -15,6 +15,8 @@ import java.util.stream.Stream;
 
 @WebServlet(name = "ViewList", value = "/viewlist")
 public class ViewList extends HttpServlet {
+
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setAttribute("clientList", ClientStorage.CLIENT_LIST);
