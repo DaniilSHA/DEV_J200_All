@@ -32,6 +32,8 @@
         </c:forEach>
     </tbody>
 </table>
-<a href="index.jsp">Вернуться на главную</a>
+<a href="index.jsp" style="display: block">Вернуться на главную</a>
+<a href="create.jsp" style="display: block">Создать нового клиента</a>
+<a href="update.jsp" style="display: block">Изменить данные о клиенте</a>
 </body>
 </html>

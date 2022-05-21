@@ -6,6 +6,8 @@
 </head>
 <body>
 <h1> Поле ${errorField} - не прошло валидацию по причине ${errorReason} </h1>
-<a href="create.jsp">Вернуть к форме</a>
+<a href="create.jsp" style="display: block">Вернуть к форме создания</a>
+<a href="update.jsp" style="display: block">Вернуть к форме редактирования</a>
+<a href="index.jsp" style="display: block">Вернуться на главную</a>
 </body>
 </html>

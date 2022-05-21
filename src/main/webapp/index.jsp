@@ -10,5 +10,6 @@
 <br/>
 <a href="create" style="margin-right: auto">Создать клиента</a>
 <a href="viewlist" style="margin-right: auto;display: block">Посмотреть список всех клиентов</a>
+<a href="update" style="margin-right: auto;display: block">Изменить данные о клиенте</a>
 </body>
 </html>
