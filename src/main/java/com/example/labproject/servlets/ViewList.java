@@ -9,6 +9,7 @@ import javax.servlet.annotation.*;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -63,8 +64,9 @@ public class ViewList extends HttpServlet {
             return;
         }
 
-        request.setAttribute("clientList",
+              request.setAttribute("clientList",
                 ClientStorage.CLIENT_LIST.stream()
+                        .filter(Objects::nonNull)
                         .filter(client ->
                                 client.getAddressList().contains(
                                         client.getAddressList().stream().filter(

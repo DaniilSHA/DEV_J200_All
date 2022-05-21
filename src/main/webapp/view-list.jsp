@@ -11,6 +11,7 @@
         <h1>Фильтр</h1>
         <label for="cityFilter">Город:</label>
         <select name="cityFilter" id="cityFilter">
+            <option value=""></option>
             <option value="Москва">Москва</option>
             <option value="Рязань">Рязань</option>
             <option value="Хабаровск">Хабаровск</option>
