@@ -1,8 +1,10 @@
 package com.example.labproject.ejb;
 
+import com.example.labproject.jpa.DbManager;
 import com.example.labproject.models.Address;
 import com.example.labproject.storage.ClientStorage;
 
+import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -14,8 +16,12 @@ import java.util.stream.Collectors;
 @Stateless
 public class SelectBean {
 
+    @EJB
+    private DbManager dbManager;
+
+
     public void findAllClients(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.setAttribute("clientList", ClientStorage.CLIENT_LIST);
+        request.setAttribute("clientList", dbManager.loadAllClients());
         request.getRequestDispatcher("/view-list.jsp").forward(request, response);
     }
 

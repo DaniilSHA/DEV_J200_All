@@ -1,13 +1,35 @@
 package com.example.labproject.models;
 
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
+@Entity
+@Table(name = "addresses")
+@NamedQueries({
+        @NamedQuery(name="addresses.findAll", query = "SELECT t FROM Address t")
+})
 public class Address {
 
-    private int idAddress;
+    @Id
+    @NotNull
+    @Basic(optional = false)
+    @Column(name = "id")
+    private long idAddress;
+    @NotNull
+    @Size(max=100)
     private String city;
+    @NotNull
+    @Size(max=100)
     private String street;
+    @NotNull
     private int num;
+    @NotNull
     private int subnum;
+    @NotNull
     private int flat;
+    @NotNull
+    @Size(max=200)
     private String extra;
 
     public Address(int idAddress, String city, String street, int num, int subnum, int flat, String extra) {
@@ -23,7 +45,7 @@ public class Address {
     public Address() {
     }
 
-    public int getIdAddress() {
+    public long getIdAddress() {
         return idAddress;
     }
 

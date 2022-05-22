@@ -1,8 +1,6 @@
 package com.example.labproject.servlets;
 
 import com.example.labproject.ejb.SelectBean;
-import com.example.labproject.models.Address;
-import com.example.labproject.storage.ClientStorage;
 
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
@@ -11,8 +9,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.Objects;
-import java.util.stream.Collectors;
 
 @WebServlet(name = "ViewList", value = "/viewlist")
 public class ViewList extends HttpServlet {
@@ -22,7 +18,7 @@ public class ViewList extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        selectBean.findAllClients(request,response);
+        selectBean.findAllClients(request, response);
     }
 
     @Override
@@ -34,6 +30,6 @@ public class ViewList extends HttpServlet {
         String street = request.getParameter("streetFilter");
         String num = request.getParameter("numFilter");
 
-        selectBean.findAllUseFilter(request,response,city,street,num);
+        selectBean.findAllUseFilter(request, response, city, street, num);
     }
 }
