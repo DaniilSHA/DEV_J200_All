@@ -66,7 +66,7 @@ public class SelectBean {
         }
 
         request.setAttribute("clientList",
-                ClientStorage.CLIENT_LIST.stream()
+                dbManager.loadAllClients().stream()
                         .filter(Objects::nonNull)
                         .filter(client ->
                                 client.getAddressList().contains(
