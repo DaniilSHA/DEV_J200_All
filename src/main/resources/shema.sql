@@ -1,12 +1,12 @@
 CREATE TABLE clients (
-     id int primary key,
+     id serial primary key,
      type varchar(100) not null ,
      model varchar(100) not null ,
      ip varchar(25) not null
 );
 
 CREATE TABLE addresses (
-     id int primary key,
+     id serial primary key,
      city varchar(100) not null ,
      street varchar(100) not null ,
      num int not null,
@@ -19,15 +19,22 @@ CREATE TABLE addresses (
 alter table addresses add foreign key (client_id) references clients (id);
 
 INSERT INTO clients values
-                        (1, 'type1', 'model1', 'ip1'),
-                        (2, 'type2', 'model2', 'ip2'),
-                        (3, 'type3', 'model3', 'ip3'),
-                        (4, 'type4', 'model4', 'ip4');
+                        (1, 'мини', 'д110', '255.012.122.111'),
+                        (2, 'биг', 'д120', '255.255.65'),
+                        (3, 'мини', 'д110', '125.21.11.0'),
+                        (4, 'мини', 'д80', '1.1.1.1'),
+                        (5, 'мини', 'д80', '1.1.1.1'),
+                        (6, 'мини', 'д80', '1.1.1.1');
 
 INSERT INTO addresses values
- (1, 'city1', 'street1', 1, 1, 1, 'extra1', 1),
- (2, 'city2', 'street2', 2, 2, 2, 'extra2', 2),
- (3, 'city3', 'street3', 3, 3, 3, 'extra3', 3);
+ (1, 'Хабаровск', 'Яна', 110, 42, 42, 'extra1', 1),
+ (2, 'Москва', 'Яна', 20, 4, 242, 'extra2', 2),
+ (3, 'Москва', 'Фрунзенская', 325, 24, 42, 'extra3', 3),
+ (4, 'Новгород', 'Яна', 110, 43, 13, 'extra3', 4),
+ (5, 'Новгород', 'Фрунзенская', 110, 43, 13, 'extra3', 5),
+ (6, 'Новгород', 'Всеволодская', 110, 43, 13, 'extra3', 6);
+
+
 
 
 

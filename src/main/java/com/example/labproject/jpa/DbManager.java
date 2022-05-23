@@ -16,6 +16,4 @@ public class DbManager {
 
         return entityManager.createNamedQuery("clients.findAll").getResultList();
     }
-
-
 }
