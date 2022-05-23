@@ -7,7 +7,7 @@ import javax.validation.constraints.Size;
 import java.util.List;
 
 @Entity
-@Table(name = "clients")
+@Table(name = "CLIENTS")
 @NamedQueries({
         @NamedQuery(name="clients.findAll", query = "SELECT t FROM Client t")
 })
@@ -16,22 +16,24 @@ public class Client {
     @Id
     @NotNull
     @Basic(optional = false)
-    @Column(name = "id")
-    private long idClient;
+    @Column(name = "ID")
+    private int idClient;
     @NotNull
     @Size(max=100)
+    @Column(name = "TYPE")
     private String type;
     @NotNull
     @Size(max=100)
+    @Column(name = "MODEL")
     private String model;
     @NotNull
     @Size(max=25)
+    @Column(name = "IP")
     private String ip;
-    @OneToMany
-    @JoinColumn(name = "addresses")
+    @OneToMany(mappedBy = "client", fetch = FetchType.EAGER)
     private List<Address> addressList;
 
-    public Client(long idClient, String type, String model, String ip, List<Address> addressList) {
+    public Client(int idClient, String type, String model, String ip, List<Address> addressList) {
         this.idClient = idClient;
         this.type = type;
         this.model = model;
@@ -46,7 +48,7 @@ public class Client {
         return idClient;
     }
 
-    public void setIdClient(long idClient) {
+    public void setIdClient(int idClient) {
         this.idClient = idClient;
     }
 

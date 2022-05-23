@@ -1,7 +1,5 @@
 package com.example.labproject.jpa;
 
-import com.example.labproject.models.Client;
-
 import javax.ejb.Singleton;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -14,7 +12,7 @@ public class DbManager {
     @PersistenceContext
     private EntityManager entityManager;
 
-    public List<Client> loadAllClients() {
+    public List loadAllClients() {
 
         return entityManager.createNamedQuery("clients.findAll").getResultList();
     }
