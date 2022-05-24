@@ -16,7 +16,7 @@ CREATE TABLE addresses (
      client_id int
 );
 
-alter table addresses add foreign key (client_id) references clients (id);
+alter table addresses add foreign key (client_id) references clients (id) on update cascade on delete cascade ;
 
 INSERT INTO clients values
                         (1, 'мини', 'д110', '255.012.122.111'),

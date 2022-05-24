@@ -37,6 +37,6 @@ public class Create extends HttpServlet {
         String flat = request.getParameter("adrFlatNumber");
         String extra = request.getParameter("adrExtra");
 
-        updateBean.createNewClient(request,response,type,model,ip,city,street,num,subnum,flat,extra);
+//        updateBean.createNewClient(request,response,type,model,ip,city,street,num,subnum,flat,extra);
     }
 }

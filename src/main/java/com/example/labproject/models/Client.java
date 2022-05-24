@@ -9,7 +9,8 @@ import java.util.List;
 @Entity
 @Table(name = "CLIENTS")
 @NamedQueries({
-        @NamedQuery(name="clients.findAll", query = "SELECT t FROM Client t")
+        @NamedQuery(name="clients.findAll", query = "SELECT c FROM Client c"),
+        @NamedQuery(name="clients.findById", query = "SELECT c FROM Client c WHERE c.idClient = :id")
 })
 public class Client {
 

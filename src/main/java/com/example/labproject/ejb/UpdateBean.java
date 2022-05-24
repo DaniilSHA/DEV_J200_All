@@ -1,9 +1,9 @@
 package com.example.labproject.ejb;
 
+import com.example.labproject.exceptions.UserNotFoundException;
 import com.example.labproject.jpa.DbManager;
 import com.example.labproject.models.Address;
 import com.example.labproject.models.Client;
-import com.example.labproject.storage.ClientStorage;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -17,136 +17,129 @@ import java.util.Collections;
 @Stateless
 public class UpdateBean {
 
+    @EJB
+    private DbManager dbManager;
 
     public void deleteClient( HttpServletRequest request,
                               HttpServletResponse response,
                               String id) throws ServletException, IOException {
 
         try {
-            int castId = Integer.parseInt(id);
-            if (ClientStorage.CLIENT_LIST.get(--castId) == null) throw new IndexOutOfBoundsException("user don't found");
+            dbManager.deleteById(Integer.parseInt(id));
+            response.sendRedirect(request.getContextPath() + "/viewlist");
         } catch (ClassCastException e) {
             request.setAttribute("errorField", "id");
             request.setAttribute("errorReason", "поле не число");
             request.getRequestDispatcher("/error.jsp").forward(request, response);
-            return;
-        } catch (IndexOutOfBoundsException e) {
+        } catch (UserNotFoundException e) {
             request.setAttribute("errorField", "id");
             request.setAttribute("errorReason", "пользователь с таким id не найден");
             request.getRequestDispatcher("/error.jsp").forward(request, response);
-            return;
         }
-
-        ClientStorage.CLIENT_LIST.remove(Integer.parseInt(id)-1);
-        ClientStorage.CLIENT_LIST.add(Integer.parseInt(id)-1, null);
-
-        request.setAttribute("clientList", ClientStorage.CLIENT_LIST);
-        request.getRequestDispatcher("/view-list.jsp").forward(request, response);
-
     }
 
 
-    public void updateClient(
-            HttpServletRequest request,
-            HttpServletResponse response,
-            String id,
-            String type,
-            String model,
-            String ip,
-            String city,
-            String street,
-            String num,
-            String subnum,
-            String flat,
-            String extra
-    ) throws ServletException, IOException {
-
-        try {
-            int castId = Integer.parseInt(id);
-            if (ClientStorage.CLIENT_LIST.get(--castId) == null) throw new IndexOutOfBoundsException("user don't found");
-        } catch (ClassCastException e) {
-            request.setAttribute("errorField", "id");
-            request.setAttribute("errorReason", "поле не число");
-            request.getRequestDispatcher("/error.jsp").forward(request, response);
-            return;
-        } catch (IndexOutOfBoundsException e) {
-            request.setAttribute("errorField", "id");
-            request.setAttribute("errorReason", "пользователь с таким id не найден");
-            request.getRequestDispatcher("/error.jsp").forward(request, response);
-            return;
-        }
-
-        boolean validateClientResult = validateClient(request, response, type, model, ip);
-        boolean validateAddressResult = validateAddress(request, response, city, street, num, subnum, flat, extra);
-
-        if (validateAddressResult && validateClientResult) {
-
-            ClientStorage.CLIENT_LIST.remove(Integer.parseInt(id)-1);
-            ClientStorage.CLIENT_LIST.add(
-                    Integer.parseInt(id)-1,
-                    new Client(
-                            Integer.parseInt(id),
-                            type,
-                            model,
-                            ip,
-                            new ArrayList<>(Collections.singletonList(
-                                    new Address(
-                                            ++ClientStorage.ADDRESS_ID_COUNTER,
-                                            city,
-                                            street,
-                                            Integer.parseInt(num),
-                                            Integer.parseInt(subnum),
-                                            Integer.parseInt(flat),
-                                            extra
-                                    )
-                            ))
-                    )
-            );
-        } else return;
-        request.setAttribute("clientList", ClientStorage.CLIENT_LIST);
-        request.getRequestDispatcher("/view-list.jsp").forward(request, response);
-    }
-
-    public void createNewClient(
-            HttpServletRequest request,
-            HttpServletResponse response,
-            String type,
-            String model,
-            String ip,
-            String city,
-            String street,
-            String num,
-            String subnum,
-            String flat,
-            String extra
-    ) throws ServletException, IOException {
-        boolean validateClientResult = validateClient(request, response, type, model, ip);
-        boolean validateAddressResult = validateAddress(request, response, city, street, num, subnum, flat, extra);
-
-        if (validateAddressResult && validateClientResult) {
-            ClientStorage.CLIENT_LIST.add(
-                    new Client(
-                            ++ClientStorage.CLIENT_ID_COUNTER,
-                            type,
-                            model,
-                            ip,
-                            new ArrayList<>(Collections.singletonList(
-                                    new Address(
-                                            ++ClientStorage.ADDRESS_ID_COUNTER,
-                                            city,
-                                            street,
-                                            Integer.parseInt(num),
-                                            Integer.parseInt(subnum),
-                                            Integer.parseInt(flat),
-                                            extra
-                                    )
-                            ))
-                    )
-            );
-        } else return;
-        request.setAttribute("clientList", ClientStorage.CLIENT_LIST);
-        request.getRequestDispatcher("/view-list.jsp").forward(request, response);
-    }
+//    public void updateClient(
+//            HttpServletRequest request,
+//            HttpServletResponse response,
+//            String id,
+//            String type,
+//            String model,
+//            String ip,
+//            String city,
+//            String street,
+//            String num,
+//            String subnum,
+//            String flat,
+//            String extra
+//    ) throws ServletException, IOException {
+//
+//        try {
+//            int castId = Integer.parseInt(id);
+////            if (ClientStorage.CLIENT_LIST.get(--castId) == null) throw new IndexOutOfBoundsException("user don't found");
+//        } catch (ClassCastException e) {
+//            request.setAttribute("errorField", "id");
+//            request.setAttribute("errorReason", "поле не число");
+//            request.getRequestDispatcher("/error.jsp").forward(request, response);
+//            return;
+//        } catch (IndexOutOfBoundsException e) {
+//            request.setAttribute("errorField", "id");
+//            request.setAttribute("errorReason", "пользователь с таким id не найден");
+//            request.getRequestDispatcher("/error.jsp").forward(request, response);
+//            return;
+//        }
+//
+//        boolean validateClientResult = validateClient(request, response, type, model, ip);
+//        boolean validateAddressResult = validateAddress(request, response, city, street, num, subnum, flat, extra);
+//
+//        if (validateAddressResult && validateClientResult) {
+//
+//            ClientStorage.CLIENT_LIST.remove(Integer.parseInt(id)-1);
+//            ClientStorage.CLIENT_LIST.add(
+//                    Integer.parseInt(id)-1,
+//                    new Client(
+//                            Integer.parseInt(id),
+//                            type,
+//                            model,
+//                            ip,
+//                            new ArrayList<>(Collections.singletonList(
+//                                    new Address(
+//                                            ++ClientStorage.ADDRESS_ID_COUNTER,
+//                                            city,
+//                                            street,
+//                                            Integer.parseInt(num),
+//                                            Integer.parseInt(subnum),
+//                                            Integer.parseInt(flat),
+//                                            extra
+//                                    )
+//                            ))
+//                    )
+//            );
+//        } else return;
+//        request.setAttribute("clientList", ClientStorage.CLIENT_LIST);
+//        request.getRequestDispatcher("/view-list.jsp").forward(request, response);
+//    }
+//
+//    public void createNewClient(
+//            HttpServletRequest request,
+//            HttpServletResponse response,
+//            String type,
+//            String model,
+//            String ip,
+//            String city,
+//            String street,
+//            String num,
+//            String subnum,
+//            String flat,
+//            String extra
+//    ) throws ServletException, IOException {
+//        boolean validateClientResult = validateClient(request, response, type, model, ip);
+//        boolean validateAddressResult = validateAddress(request, response, city, street, num, subnum, flat, extra);
+//
+//        if (validateAddressResult && validateClientResult) {
+//            ClientStorage.CLIENT_LIST.add(
+//                    new Client(
+//                            ++ClientStorage.CLIENT_ID_COUNTER,
+//                            type,
+//                            model,
+//                            ip,
+//                            new ArrayList<>(Collections.singletonList(
+//                                    new Address(
+//                                            ++ClientStorage.ADDRESS_ID_COUNTER,
+//                                            city,
+//                                            street,
+//                                            Integer.parseInt(num),
+//                                            Integer.parseInt(subnum),
+//                                            Integer.parseInt(flat),
+//                                            extra
+//                                    )
+//                            ))
+//                    )
+//            );
+//        } else return;
+//        request.setAttribute("clientList", ClientStorage.CLIENT_LIST);
+//        request.getRequestDispatcher("/view-list.jsp").forward(request, response);
+//    }
 
     private boolean validateClient (HttpServletRequest request, HttpServletResponse response,
                                     String type, String model, String ip) throws ServletException, IOException {

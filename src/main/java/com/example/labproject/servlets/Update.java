@@ -38,7 +38,7 @@ public class Update extends HttpServlet {
         String flat = request.getParameter("adrFlatNumber");
         String extra = request.getParameter("adrExtra");
 
-        updateBean.updateClient(request,response,id,type,model,ip,city,street,num,subnum,flat,extra);
+//        updateBean.updateClient(request,response,id,type,model,ip,city,street,num,subnum,flat,extra);
 
     }
 }

@@ -2,7 +2,6 @@ package com.example.labproject.ejb;
 
 import com.example.labproject.jpa.DbManager;
 import com.example.labproject.models.Address;
-import com.example.labproject.storage.ClientStorage;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
