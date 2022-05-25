@@ -27,6 +27,8 @@
         <div style="margin: 20px; padding: 20px; background: #e8c0bd; border: 2px solid black; border-radius: 5px; flex:1">
             <h1>Введите информацию об адресе клиента</h1>
             <div>
+                <label for="idAddr">id адреса: </label>
+                <input type="number" name="addressId" id="idAddr">
                 <label for="city">город: </label>
                 <input type="text" name="adrCity" id="city">
                 <br>

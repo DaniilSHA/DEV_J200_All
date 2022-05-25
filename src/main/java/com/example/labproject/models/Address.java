@@ -12,6 +12,7 @@ import javax.validation.constraints.Size;
 public class Address {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @NotNull
     @Basic(optional = false)
     @Column(name = "ID")
@@ -51,6 +52,15 @@ public class Address {
         this.extra = extra;
     }
 
+    public Address(String city, String street, int num, int subnum, int flat, String extra) {
+        this.city = city;
+        this.street = street;
+        this.num = num;
+        this.subnum = subnum;
+        this.flat = flat;
+        this.extra = extra;
+    }
+
     public Client getClient() {
         return client;
     }
@@ -62,7 +72,7 @@ public class Address {
     public Address() {
     }
 
-    public long getIdAddress() {
+    public int getIdAddress() {
         return idAddress;
     }
 

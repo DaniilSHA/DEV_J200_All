@@ -1,6 +1,6 @@
 package com.example.labproject.jpa;
 
-import com.example.labproject.exceptions.UserNotFoundException;
+import com.example.labproject.exceptions.ClientNotFoundException;
 import com.example.labproject.models.Client;
 
 import javax.ejb.Singleton;
@@ -19,9 +19,17 @@ public class DbManager {
         return entityManager.createNamedQuery("clients.findAll").getResultList();
     }
 
-    public void deleteById(int id) {
+    public void deleteById(int id) throws ClientNotFoundException {
         Client client = entityManager.createNamedQuery("clients.findById", Client.class).setParameter("id", id).getSingleResult();
-        if (client == null) throw new UserNotFoundException(id);
+        if (client == null) throw new ClientNotFoundException(id);
         entityManager.remove(client);
+    }
+
+    public void saveNewClient (Client client) {
+        entityManager.persist(client);
+    }
+
+    public Client findClientById(int id) throws ClientNotFoundException {
+        return entityManager.createNamedQuery("clients.findById", Client.class).setParameter("id", id).getSingleResult();
     }
 }

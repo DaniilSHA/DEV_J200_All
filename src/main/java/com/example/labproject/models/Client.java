@@ -15,6 +15,7 @@ import java.util.List;
 public class Client {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @NotNull
     @Basic(optional = false)
     @Column(name = "ID")
@@ -31,11 +32,18 @@ public class Client {
     @Size(max=25)
     @Column(name = "IP")
     private String ip;
-    @OneToMany(mappedBy = "client", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "client", fetch = FetchType.EAGER,  cascade = CascadeType.ALL)
     private List<Address> addressList;
 
     public Client(int idClient, String type, String model, String ip, List<Address> addressList) {
         this.idClient = idClient;
+        this.type = type;
+        this.model = model;
+        this.ip = ip;
+        this.addressList = addressList;
+    }
+
+    public Client(String type, String model, String ip, List<Address> addressList) {
         this.type = type;
         this.model = model;
         this.ip = ip;

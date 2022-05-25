@@ -26,11 +26,12 @@ public class Update extends HttpServlet {
 
         request.setCharacterEncoding("UTF-8");
 
-        String id = request.getParameter("clientId");
+        String idClient = request.getParameter("clientId");
         String type = request.getParameter("clientType");
         String model = request.getParameter("clientModel");
         String ip = request.getParameter("clientIp");
 
+        String idAddress = request.getParameter("addressId");
         String city = request.getParameter("adrCity");
         String street = request.getParameter("adrStreet");
         String num = request.getParameter("adrHomeNumber");
@@ -38,7 +39,7 @@ public class Update extends HttpServlet {
         String flat = request.getParameter("adrFlatNumber");
         String extra = request.getParameter("adrExtra");
 
-//        updateBean.updateClient(request,response,id,type,model,ip,city,street,num,subnum,flat,extra);
+        updateBean.updateClient(request,response,idClient,type,model,ip,idAddress,city,street,num,subnum,flat,extra);
 
     }
 }
