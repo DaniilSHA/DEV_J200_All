@@ -1,6 +1,7 @@
 package com.example.labproject.models;
 
 import javax.xml.bind.annotation.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -18,15 +19,15 @@ public class ClientsListXmlDto {
     public ClientsListXmlDto() {
     }
 
-    private static class ClientDto {
+    public static class ClientDto {
 
         @XmlAttribute
         private long id;
-        @XmlElement
+        @XmlAttribute
         private String type;
-        @XmlElement
+        @XmlAttribute
         private String model;
-        @XmlElement
+        @XmlAttribute
         private String ip;
 
         public ClientDto(long id, String type, String model, String ip) {
@@ -34,6 +35,32 @@ public class ClientsListXmlDto {
             this.type = type;
             this.model = model;
             this.ip = ip;
+        }
+
+        public long getId() {
+            return id;
+        }
+
+        public String getType() {
+            return type;
+        }
+
+        public String getModel() {
+            return model;
+        }
+
+        public String getIp() {
+            return ip;
+        }
+
+        @Override
+        public String toString() {
+            return "ClientDto{" +
+                    "id=" + id +
+                    ", type='" + type + '\'' +
+                    ", model='" + model + '\'' +
+                    ", ip='" + ip + '\'' +
+                    '}';
         }
     }
 
