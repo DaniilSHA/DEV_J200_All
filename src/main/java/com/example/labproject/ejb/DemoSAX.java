@@ -53,14 +53,6 @@ public class DemoSAX extends DefaultHandler {
     @Override
     public void endDocument() throws SAXException {
         try {
-//            request.setAttribute("clientList", parserClientsFinder.stream().map(clientDto -> new Client(
-//                    (int) clientDto.getId(),
-//                    clientDto.getType(),
-//                    clientDto.getModel(),
-//                    clientDto.getIp(),
-//                    null
-//            )));
-//            request.getRequestDispatcher("/view-list.jsp").forward(request, response);
             response.getWriter().println(parserClientsFinder.stream().map(ClientsListXmlDto.ClientDto::toString).collect(Collectors.joining("\n")));
         } catch (IOException e) {
             e.printStackTrace();

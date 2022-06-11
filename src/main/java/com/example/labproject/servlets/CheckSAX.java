@@ -27,14 +27,14 @@ public class CheckSAX extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         try {
-            String model = new String("д110".getBytes(StandardCharsets.UTF_8), StandardCharsets.UTF_8);
+            String model = request.getParameter("model");
 
             transformer.transform();
             SAXParserFactory factory = SAXParserFactory.newInstance();
             SAXParser saxParser = factory.newSAXParser();
             InputSource inputSource = new InputSource(transformer.transform().getAbsolutePath());
             inputSource.setEncoding("UTF-8");
-            saxParser.parse(inputSource, new DemoSAX(model, response, request));
+            saxParser.parse(inputSource, new DemoSAX(model == null ? "" : model, response, request));
 
         } catch (SAXException | ParserConfigurationException e) {
             e.printStackTrace();
