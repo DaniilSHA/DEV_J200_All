@@ -3,6 +3,7 @@ package com.example.labproject.models;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlTransient;
 
 import java.util.List;
 
@@ -32,6 +33,7 @@ public class Client {
     @Size(max=25)
     @Column(name = "IP")
     private String ip;
+    @XmlTransient
     @OneToMany(mappedBy = "client", fetch = FetchType.EAGER,  cascade = CascadeType.ALL)
     private List<Address> addressList;
 
