@@ -29,6 +29,7 @@ public class CheckSAX extends HttpServlet {
         try {
             String model = request.getParameter("model");
 
+            transformer.transform();
             SAXParserFactory factory = SAXParserFactory.newInstance();
             SAXParser saxParser = factory.newSAXParser();
             InputSource inputSource = new InputSource(transformer.transform().getAbsolutePath());

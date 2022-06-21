@@ -1,10 +1,12 @@
 package com.example.labproject.ejb;
 
+import com.example.labproject.models.Client;
 import com.example.labproject.models.ClientsListXmlDto;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -14,6 +16,7 @@ import java.util.stream.Collectors;
 public class DemoSAX extends DefaultHandler {
 
     private String param;
+    private ClientsListXmlDto.ClientDto clientDto;
     private List<ClientsListXmlDto.ClientDto> parserClientsFinder = new ArrayList<>();
     private HttpServletResponse response;
     private HttpServletRequest request;
