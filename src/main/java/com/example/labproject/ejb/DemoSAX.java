@@ -36,7 +36,7 @@ public class DemoSAX extends DefaultHandler {
             String id = attributes.getValue("id");
             String type = attributes.getValue("type");
             String ip = attributes.getValue("ip");
-            parserClientsFinder.add(new ClientsListXmlDto.ClientDto(Long.parseLong(id), type, model, ip));
+            parserClientsFinder.add(new ClientsListXmlDto.ClientDto(Long.parseLong(id), type, model, ip, null));
         }
     }
 
