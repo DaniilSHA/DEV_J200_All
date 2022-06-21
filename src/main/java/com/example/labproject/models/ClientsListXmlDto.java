@@ -21,6 +21,7 @@ public class ClientsListXmlDto {
 
     public static class ClientDto {
 
+
         @XmlAttribute
         private long id;
         @XmlAttribute
