@@ -55,7 +55,8 @@ public class DemoDOM {
                             Long.parseLong(cleintEl.getAttribute("id")),
                             cleintEl.getAttribute("type"),
                             cleintEl.getAttribute("model"),
-                            cleintEl.getAttribute("ip")
+                            cleintEl.getAttribute("ip"),
+                            null
                     ));
                 }
             }
