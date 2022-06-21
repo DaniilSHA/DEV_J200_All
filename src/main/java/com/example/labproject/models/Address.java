@@ -7,7 +7,8 @@ import javax.validation.constraints.Size;
 @Entity
 @Table(name = "ADDRESSES")
 @NamedQueries({
-        @NamedQuery(name="addresses.findAll", query = "SELECT t FROM Address t")
+        @NamedQuery(name="addresses.findAll", query = "SELECT t FROM Address t"),
+        @NamedQuery(name="addresses.findById", query = "SELECT t FROM Address t WHERE t.idAddress = :id")
 })
 public class Address {
 

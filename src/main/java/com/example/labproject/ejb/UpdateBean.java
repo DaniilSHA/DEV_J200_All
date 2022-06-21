@@ -15,7 +15,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Stateless
 public class UpdateBean {
@@ -28,7 +27,7 @@ public class UpdateBean {
                               String id) throws ServletException, IOException {
 
         try {
-            dbManager.deleteById(Integer.parseInt(id));
+            dbManager.deleteClientById(Integer.parseInt(id));
             response.sendRedirect(request.getContextPath() + "/viewlist");
         } catch (ClassCastException e) {
             request.setAttribute("errorField", "id");

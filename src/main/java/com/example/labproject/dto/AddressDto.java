@@ -1,9 +1,8 @@
 package com.example.labproject.dto;
 
-import javax.persistence.Column;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlRootElement;
 
+@XmlRootElement
 public class AddressDto {
 
     private int id;
