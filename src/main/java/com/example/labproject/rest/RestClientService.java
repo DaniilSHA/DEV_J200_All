@@ -68,6 +68,8 @@ public class RestClientService extends Application {
                     }).collect(Collectors.toList()))).collect(Collectors.toList());
     }
 
+
+
     @DELETE
     @Path("/{id}")
     @Produces({ MediaType.APPLICATION_XML })
