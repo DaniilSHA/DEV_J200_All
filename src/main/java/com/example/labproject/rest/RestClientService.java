@@ -43,6 +43,7 @@ public class RestClientService extends Application {
         );
     }
 
+
     @GET
     @Path("/all")
     @Produces({ MediaType.APPLICATION_XML })
